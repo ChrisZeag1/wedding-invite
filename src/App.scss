@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.section {
+  margin: 0 10px;
+}
+
+.green-money {
+  color:#43a047;
+}
+
+.begining {
+  height: 480px;
+  position: relative;
+
+  h1.special {
+    font-size: 6.2rem;
+    line-height: 85%;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 22%;
+    transform: rotate(353deg);
+  }
+
+  #flowers {
+    width: 150px;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+  }
+
+  #us {
+    width: 170px;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+  }
+
+  #greeting {
+    position: absolute;
+    right: 25px;
+    top: 40px;
+    margin: 0;
+    font-family: 'Cambay italic';
+  }
+
+  #invite {
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+  }
+}
+
+.date {
+  border: 2px #c1d1e1 dashed;
+  margin: 20px;
+  padding: 10px 0;
+  border-radius: 55px;
+  margin-top: 0;
+
+  h4 {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  svg {
+    vertical-align: middle;
+
+  }
+}
+
+.MuiPaper-root {
+  margin: 10px 0;
+}
+
+.actions {
+  button {
+    margin: 10px 5px;
+  }
+}
+
+.carousel-custom {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  min-width: 350px;
+  
+  .MuiPaper-root {
+    margin: 0 5px;
+    border-radius: 10px;
+  }
+
+  .MuiCardContent-root  {
+    display: flex;
+  }
+
+  img {
+    margin: 15px;
+    border-radius: 10px;
+  }
+
+  .description {
+    margin: auto;
+  }
+}
