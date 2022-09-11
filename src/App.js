@@ -56,7 +56,7 @@ function App() {
         <div className="date">
           <a target="_blank" href={`https://calendar.google.com/calendar/r/eventedit?text=${evenName}&ctz=${ctz}&dates=${startDateTime}/${endDateTime}&details=${details}&location=${location}`}>
             <h4>30 de Diciembre <br/> del 2022 </h4>
-            <p><CalendarMonthIcon/> Angedar</p>
+            <p><CalendarMonthIcon/> Agedar</p>
           </a>
         </div>
 
@@ -107,9 +107,9 @@ function App() {
         
       </div>
       <div className="section">
-        <h3> Alojamiento </h3>
+        <h4> Alojamiento </h4>
         <div className="carousel-custom">
-        {hotels.map(h => (<a href={h.link}>
+        {hotels.map(h => (<a href={h.link} target="_blank">
           <Card variant="outlined">
             <CardContent>
               <div className="image-container">
@@ -130,7 +130,7 @@ function App() {
       </div>
       <div className="section">
         <h4>Mesa de regalos</h4>
-        <ul>
+        <ul id="gifts">
           <li> <Button variant="outlined">Amazon</Button></li>
           <li> <Button variant="outlined">Bed bath & beyond</Button></li>
         </ul>
