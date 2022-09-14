@@ -53,7 +53,7 @@ function App() {
   }, []);
   
   const fetchGuest = async () => {
-    const id = window.location.pathname;
+    const id = window.location.hash.replace('#', '/');
     let result;
     try {
       result = await axios.get('https://3vhfqszb21.execute-api.us-east-1.amazonaws.com/guest' + id);
@@ -66,14 +66,14 @@ function App() {
   }
 
   const postAnswer = async (isAttending) => {
-    const id = window.location.pathname;
+    const id = window.location.hash.replace('#', '/');
     setisLoadingPost(true);
     await axios.post(`https://3vhfqszb21.execute-api.us-east-1.amazonaws.com/guest${id}`, { isAttending });
     setisLoadingPost(false);
     setGuest({...guest, isGoing: isAttending ? 1 : 0 });
   }
 
-  return !guest ? <LoadingIndicator/> : error ? <h4>hay un error, llama a </h4> : (
+  return !guest ? <LoadingIndicator/> : error ? <h4>hay un error en la pagina </h4> : (
     <div className="App">
       <div className="begining">
         <img id="flowers" src="./flowers-begining.png"></img>
