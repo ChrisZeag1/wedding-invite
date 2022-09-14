@@ -16,7 +16,7 @@
   position: relative;
 
   h1.special {
-    font-size: 6.2rem;
+    font-size: 5.8rem;
     line-height: 85%;
     margin: 0;
     position: absolute;
@@ -26,17 +26,18 @@
   }
 
   #flowers {
-    width: 150px;
+    width: 200px;
     position: absolute;
     top: -5px;
-    left: -10px;
+    left: -15px;
   }
 
   #us {
-    width: 170px;
+    width: 200px;
     position: absolute;
-    right: 5px;
+    right: -10px;
     bottom: 0;
+    z-index: -1;
   }
 
   #greeting {
@@ -44,12 +45,16 @@
     right: 25px;
     top: 40px;
     margin: 0;
-    font-family: 'Cambay italic';
+    text-align: end;
+    max-width: 200px;
+
   }
 
   #invite {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
+    text-align: left;
+    font-weight: bold;
     left: 15px;
   }
 }
@@ -68,6 +73,7 @@
 
   p {
     margin: 0;
+    font-weight: bold;
   }
 
   svg {

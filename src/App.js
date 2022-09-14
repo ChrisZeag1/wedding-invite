@@ -1,10 +1,14 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.scss';
+import { LoadingIndicator } from './loading-indicator';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const location = `Iglesia+San+Pablo,+C.+San+Antonio+105,+Las Fuentes,+45070 Zapopan,+Jal.,+Mexico`;
@@ -36,20 +40,50 @@ const details = `el evento es en la hacienda <a href="https://www.google.com/map
       price: '$',
       stars: '⭐⭐⭐⭐',
       link: 'https://expedia.com/Guadalajara-Hotels-Hotel-Estancia.h9066723.Hotel-Information?chkin=2022-12-30&chkout=2023-01-01&x_pwa=1&rfrr=HSR&pwa_ts=1662429283567&referrerUrl=aHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo&useRewards=false&rm1=a2&regionId=12114&destination=Zapopan%2C+Jalisco%2C+Mexico&destType=MARKET&neighborhoodId=553248635939576046&selected=9066723&sort=RECOMMENDED&top_dp=50'
-    },
-  ]
+    }
+  ];
 
 function App() {
-  return (
+  const [guest, setGuest] = useState(null);
+  const [error, setError] = useState(false);
+  const [isLoadingPost, setisLoadingPost] = useState(false);
+
+  useEffect(() => {
+    fetchGuest();
+  }, []);
+  
+  const fetchGuest = async () => {
+    const id = window.location.pathname;
+    let result;
+    try {
+      result = await axios.get('https://3vhfqszb21.execute-api.us-east-1.amazonaws.com/guest' + id);
+      result && result.data && setGuest(result.data[0]);
+    } catch (e) {
+      console.log('error fetch guest >', e);
+      setGuest({});
+      setError(true);
+    }
+  }
+
+  const postAnswer = async (isAttending) => {
+    const id = window.location.pathname;
+    setisLoadingPost(true);
+    await axios.post(`https://3vhfqszb21.execute-api.us-east-1.amazonaws.com/guest${id}`, { isAttending });
+    setisLoadingPost(false);
+    setGuest({...guest, isGoing: isAttending ? 1 : 0 });
+  }
+
+  return !guest ? <LoadingIndicator/> : error ? <h4>hay un error, llama a </h4> : (
     <div className="App">
-      {/* <div> 
-      <img src="./begining.png" alt="invite" width="400"/>
-      </div> */}
       <div className="begining">
         <img id="flowers" src="./flowers-begining.png"></img>
-        <h4 id="greeting">Hola Nombre!</h4>
+        <h4 id="greeting">{guest.name},</h4>
         <h1 className="special"> Isis  <br/>& <br/>Chris</h1>
-        <p id="invite">te invitamos a nuestra boda <br/>que se celebrara el</p>
+        <p id="invite">
+          ¡estamos muy emocionados<br/>
+          de invitarte a nuestra boda!<br/>
+          ¡Sin ti no será lo mismo!
+        </p>
         <img id="us" src="./us-begining.png"></img>
       </div>
       <div className="section">
@@ -61,8 +95,22 @@ function App() {
         </div>
 
         <div className="actions">
-          <Button variant="contained" color="primary" size="lg">Assitire</Button>
-          <Button variant="outlined" color="primary" size="lg">No assistire</Button>
+          <LoadingButton variant="contained"
+                  color="primary"
+                  size="lg"
+                  loading={isLoadingPost}
+                  onClick={() => { postAnswer(true); }}
+                  disabled={!!guest.isGoing}>
+            Assitire
+          </LoadingButton>
+          <LoadingButton variant="outlined"
+                  color="primary"
+                  size="lg"
+                  loading={isLoadingPost}
+                  onClick={() => { postAnswer(false); }}
+                  disabled={guest.isGoing === 0}>
+            No assistire
+          </LoadingButton>
         </div>
 
         <h4>Ceremonia Religiosa</h4>
@@ -109,7 +157,7 @@ function App() {
       <div className="section">
         <h4> Alojamiento </h4>
         <div className="carousel-custom">
-        {hotels.map(h => (<a href={h.link} target="_blank">
+        {hotels.map(h => (<a key={h.name} href={h.link} target="_blank">
           <Card variant="outlined">
             <CardContent>
               <div className="image-container">
