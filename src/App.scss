@@ -11,6 +11,14 @@
   color:#43a047;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+a.selected {
+  text-decoration: underline !important;
+}
+
 .begining {
   height: 480px;
   position: relative;
@@ -52,11 +60,26 @@
 
   #invite {
     position: absolute;
-    bottom: 30px;
+    bottom: 11px;
     text-align: left;
-    font-weight: bold;
     left: 15px;
+    width: 40%;
   }
+}
+
+.parents {
+  margin-bottom: 20px;
+
+  .parents-two-cols {
+    display: flex;
+    justify-content: space-evenly;
+    
+    .special {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
 }
 
 .date {
@@ -87,8 +110,31 @@
 }
 
 .actions {
+  margin-bottom: 10px;
   button {
     margin: 10px 5px;
+  }
+}
+
+#party-number {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+
+  .MuiAvatar-circular {
+    margin: 0 5px;
+    font-size: 1.2rem;
+  }
+}
+
+.actions-response {
+
+  .MuiChip-label {
+    font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', 'sans-serif';
+  }
+
+  .MuiChip-root .MuiAvatar-root {
+    font-size: 1.2rem;
   }
 }
 
