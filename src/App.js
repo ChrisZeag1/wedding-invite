@@ -12,6 +12,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const location = `Iglesia+San+Pablo,+C.+San+Antonio+105,+Las Fuentes,+45070 Zapopan,+Jal.,+Mexico`;
@@ -46,10 +48,23 @@ const details = `EVENT_IS_IN <a href="https://www.google.com/maps/place/Hacienda
     }
   ];
 
+  const modalStyles = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };  
+
 function App() {
   const [guest, setGuest] = useState(null);
   const [error, setError] = useState(false);
   const [isLoadingPost, setisLoadingPost] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -67,6 +82,10 @@ function App() {
   function changeLang(lang) {
     setGuest({ ...guest, lang });
     i18n.changeLanguage(lang);
+  }
+
+  function openModal(isOpen) {
+    setIsOpenModal(isOpen);
   }
   
   const fetchGuest = async () => {
@@ -109,12 +128,12 @@ function App() {
           <h6>{t('BLESSING')}</h6>
           <div className="parents-two-cols">
             <div className="parents-chris">
-              <p className="special">Cristina Aguirre</p>
-              <p className="special">Eduardo Zepeda</p>
+              <p className="special">Margarita Luna <span>+</span></p>
+              <p className="special">José Nava</p>
             </div>
             <div className="isis-parents">
-              <p className="special">Margarita Luna <span>+</span></p>
-              <p className="special">Jose Nava</p>
+              <p className="special">Cristina Aguirre</p>
+              <p className="special">Eduardo Zepeda</p>
             </div>
           </div>
           <h6>{t('OUR_DATE')}</h6>
@@ -129,7 +148,7 @@ function App() {
         <div className="actions">
           <p id="party-number">
             {t('PARTY_NUMBER')}
-            <Avatar sx={{ width: 20, height: 20 }}>{guest.party}</Avatar>
+            <Avatar className="success" sx={{ width: 20, height: 20 }}>{guest.party}</Avatar>
             {guest.party <= 1 ? t('GUEST') : t('GUESTS')}.
           </p>
           <LoadingButton variant="contained"
@@ -163,7 +182,7 @@ function App() {
         <a target="_blank" href="https://www.google.com/maps/place/Iglesia+San+Pablo/@20.6238022,-103.4299002,17z/data=!4m12!1m6!3m5!1s0x8428ac5d510cac13:0xf1ea942b511ac58d!2sIglesia+San+Pablo!8m2!3d20.6238144!4d-103.4276744!3m4!1s0x8428ac5d510cac13:0xf1ea942b511ac58d!8m2!3d20.6238144!4d-103.4276744">
           <Card>
             <CardHeader 
-              subheader="Parroquia, San Pablo, Las Fuentes"
+              subheader="Parroquia San Pablo, Las Fuentes"
             ></CardHeader>
             <CardMedia component="img"
               height="194"
@@ -183,11 +202,11 @@ function App() {
         <a target="_blank" href="https://www.google.com/maps/place/Hacienda+la+Agavia/@20.6412327,-103.4264548,17z/data=!3m1!4b1!4m12!1m6!3m5!1s0x8428ac3e916dd73b:0x8766f0a71985e7c4!2sHacienda+la+Agavia!8m2!3d20.6412316!4d-103.4242641!3m4!1s0x8428ac3e916dd73b:0x8766f0a71985e7c4!8m2!3d20.6412316!4d-103.4242641">
           <Card>
             <CardHeader
-              subheader="Hacienda las agavaia"
+              subheader="Hacienda La Agavia"
             ></CardHeader>
             <CardMedia component="img"
               height="194"
-              image="./hacienda-agavia.jpeg"
+              image="./hacienda-agavia.png"
               alt="">
             </CardMedia>
             <CardContent>
@@ -224,11 +243,66 @@ function App() {
       </div>
       <div className="section">
         <h4>{t('REGISTRY')}</h4>
-        <ul id="gifts">
-          <li> <Button variant="outlined">Amazon</Button></li>
-          <li> <Button variant="outlined">Bed bath & beyond</Button></li>
-        </ul>
+        <ol id="gifts">
+          <li>
+            {
+              guest.lang === 'ES'? <Button variant="outlined" onClick={(e) => { e.preventDefault(); openModal(true); }}>Amazon</Button> :
+                <a target="_blank" href="https://www.amazon.com/wedding/christian-zepeda-aguirre-isis-nava-luna-zapopan-december-2022/registry/342UGUOPVX6JD">
+                  <Button variant="outlined">Amazon</Button>
+                </a>
+              }
+          </li>
+          <li>{t('DEPOSIT_CHRIS')}</li>
+          <li>{t('DESPOSIT_ISIS')}</li>
+        </ol>
       </div>
+      <Modal open={isOpenModal} onClose={() => { openModal(false); }}>
+      <Box sx={modalStyles}>
+      <div id="modal-modal-title">
+        <h3>Cambiar codigo postal de MX a U.S.A.</h3>
+        <p>para ver todos los articulos como disponibles.</p>
+      </div>
+      <div id="modal-modal-description">
+          <p>la Siguiente guia consta de 5 pasos.</p>
+          <ol>
+            <li>
+              <p>
+              Ir a nuestra lista de regalos en 
+              <a target="_blank" href="https://www.amazon.com/wedding/christian-zepeda-aguirre-isis-nava-luna-zapopan-december-2022/registry/342UGUOPVX6JD"> Amazon.com </a>
+              </p>
+            </li>
+            <li>
+              <p>
+              Hacer click en enviar a México.
+              <img src="./amazon-1.jpg" width="250"/>
+              </p>
+            </li>
+            <li>
+              <p>
+              Hacer click en "Introduce un codigo postal de E.E.U.U".
+              <img src="./amazon-2.jpg" width="250"/>
+              </p>
+            </li>
+            <li>
+              <p>
+              Instroduce nuestro codigo postal <b>90012</b>. (Los Angeles, CA)
+              <img src="./amazon-3.png" width="250"></img>
+              </p>
+            </li>
+            <li>
+              <p> Refresca la pagina (esta operacion puede cambiar dependiendo del navegador).
+              </p>
+            </li>        
+          </ol>
+          <div className="actions-modal">
+            <a target="_blank" href="https://www.amazon.com/wedding/christian-zepeda-aguirre-isis-nava-luna-zapopan-december-2022/registry/342UGUOPVX6JD">
+              <Button variant="outlined">Entendí vamos a Amazon</Button>
+            </a>
+            <a onClick={(e) => { e.preventDefault(); openModal(false); }}>No entendí, mejor hago transferencia</a>
+          </div>
+      </div>
+      </Box>
+      </Modal>
       <p className="bold">
         <a className={guest.lang === 'EN'? 'selected' : ''} onClick={()=> { changeLang('EN') }}>{t('ENGLISH')}</a> | 
         <a className={guest.lang === 'ES'? 'selected' : ''} onClick={()=> { changeLang('ES') }}> {t('SPANISH')}</a>

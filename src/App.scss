@@ -7,6 +7,33 @@
   margin: 0 10px;
 }
 
+.MuiBox-root {
+  height: 600px;
+  overflow: scroll;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  #modal-modal-description {
+
+    * {
+      font-family: 'Roboto' !important;
+    }
+
+    .actions-modal {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      a {
+        margin: 10px;
+      }
+
+    }
+  }
+}
+
 .green-money {
   color:#43a047;
 }
@@ -125,6 +152,10 @@ a.selected {
     margin: 0 5px;
     font-size: 1.2rem;
   }
+}
+
+#party-number .success {
+  background-color: #ff94c2;
 }
 
 .actions-response {

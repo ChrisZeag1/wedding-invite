@@ -5,7 +5,7 @@
   "INVITE_WITHOUT_YOU": "Without you it won't be the same!",
   "AND": "AND",
   "BLESSING": "With the blessing of our parents:",
-  "OUR_DATE": "On the Day our bond begings:",
+  "OUR_DATE": "On the day of our wedding:",
   "DATE": "December 30th, \n 2022" ,
   "SCHEDULE": "Schedule",
   "PARTY_NUMBER": "Invite for",
@@ -14,14 +14,16 @@
   "ATTEND": "I will attend",
   "NOT_ATTEND": "I will not attend",
   "HAPPY_TO_SEE": "We are so excited to see you there!",
-  "SAD_NOT_TO_SEE": "It is going to be tough not to see you on this special day",
+  "SAD_NOT_TO_SEE": "It is going to be sad not to see you on this special day",
   "RELIGIOUS_CEREMONY": "Religious Ceremony",
   "TO": "to",
   "NAVIGATE": "Navigate",
   "VENUE": "Venue",
   "LODGING": "Suggested lodging",
   "BOOK": "Book",
-  "REGISTRY": "Registry",
+  "REGISTRY": "Gift Registry",
   "ENGLISH": "ENGLISH",
-  "SPANISH": "SPANISH"
+  "SPANISH": "SPANISH",
+  "DEPOSIT_CHRIS": "To Chris. Wells fargo via Zelle: 424 353-9927",
+  "DESPOSIT_ISIS": "To Isis. BBVA CLABE: 012 320 01543422704 4"
 }
