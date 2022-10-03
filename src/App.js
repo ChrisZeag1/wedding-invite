@@ -65,6 +65,7 @@ function App() {
   const [error, setError] = useState(false);
   const [isLoadingPost, setisLoadingPost] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenTransferModal, setIsOpenTransferModal] = useState(false);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -86,6 +87,10 @@ function App() {
 
   function openModal(isOpen) {
     setIsOpenModal(isOpen);
+  }
+
+  function openTransferModal(isOpen) {
+    setIsOpenTransferModal(isOpen);
   }
   
   const fetchGuest = async () => {
@@ -252,8 +257,7 @@ function App() {
                 </a>
               }
           </li>
-          <li>{t('DEPOSIT_CHRIS')}</li>
-          <li>{t('DESPOSIT_ISIS')}</li>
+          <li><Button variant="outlined" onClick={(e) => { e.preventDefault(); openTransferModal(true); }}>{t('BANK_TANSFER')}</Button></li>
         </ol>
       </div>
       <Modal open={isOpenModal} onClose={() => { openModal(false); }}>
@@ -302,6 +306,19 @@ function App() {
           </div>
       </div>
       </Box>
+      </Modal>
+      <Modal open={isOpenTransferModal} onClose={() => { openTransferModal(false); }}>
+        <Box sx={modalStyles}>
+        <div id="modal-modal-title"> <h3>{t('BANK_TANSFER')}</h3></div>
+        <div id="modal-modal-description">
+        <ul>
+          <li><p>{t('DEPOSIT_CHRIS')} <br/><b>424 353-9927</b></p></li>
+          <li><p>{t('DESPOSIT_ISIS')}<br/><b>012 320 01543422704 4</b></p></li>
+        </ul>
+        <a onClick={(e) => { e.preventDefault(); openTransferModal(false); }}>Cerrar</a>
+
+        </div>
+        </Box>
       </Modal>
       <p className="bold">
         <a className={guest.lang === 'EN'? 'selected' : ''} onClick={()=> { changeLang('EN') }}>{t('ENGLISH')}</a> | 

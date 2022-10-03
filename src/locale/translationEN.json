@@ -24,6 +24,7 @@
   "REGISTRY": "Gift Registry",
   "ENGLISH": "ENGLISH",
   "SPANISH": "SPANISH",
-  "DEPOSIT_CHRIS": "To Chris. Wells fargo via Zelle: 424 353-9927",
-  "DESPOSIT_ISIS": "To Isis. BBVA CLABE: 012 320 01543422704 4"
+  "DEPOSIT_CHRIS": "🇺🇸(U.S.) Wells fargo via Zelle:",
+  "DESPOSIT_ISIS": "🇲🇽(MX.) BBVA CLABE:",
+  "BANK_TANSFER": "Bank Transfer"
 }
