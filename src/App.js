@@ -225,6 +225,21 @@ function App() {
         
       </div>
       <div className="section">
+        <h4>{t('REGISTRY')}</h4>
+        <ol id="gifts">
+          <li>
+            {
+              guest.lang === 'ES'? <Button variant="outlined" onClick={(e) => { e.preventDefault(); openModal(true); }}>Amazon</Button> :
+                <a target="_blank" href="https://www.amazon.com/wedding/christian-zepeda-aguirre-isis-nava-luna-zapopan-december-2022/registry/342UGUOPVX6JD">
+                  <Button variant="outlined">Amazon</Button>
+                </a>
+              }
+          </li>
+          <li><Button variant="outlined" onClick={(e) => { e.preventDefault(); openTransferModal(true); }}>{t('BANK_TANSFER')}</Button></li>
+        </ol>
+      </div>
+
+      <div className="section">
         <h4>{t('LODGING')}</h4>
         <div className="carousel-custom">
         {hotels.map(h => (<a key={h.name} href={h.link} target="_blank">
@@ -246,20 +261,13 @@ function App() {
         </a>))}
         </div>
       </div>
+
       <div className="section">
-        <h4>{t('REGISTRY')}</h4>
-        <ol id="gifts">
-          <li>
-            {
-              guest.lang === 'ES'? <Button variant="outlined" onClick={(e) => { e.preventDefault(); openModal(true); }}>Amazon</Button> :
-                <a target="_blank" href="https://www.amazon.com/wedding/christian-zepeda-aguirre-isis-nava-luna-zapopan-december-2022/registry/342UGUOPVX6JD">
-                  <Button variant="outlined">Amazon</Button>
-                </a>
-              }
-          </li>
-          <li><Button variant="outlined" onClick={(e) => { e.preventDefault(); openTransferModal(true); }}>{t('BANK_TANSFER')}</Button></li>
-        </ol>
+        <h4>{t('DRESS_CODE')}</h4>
+        <h6>{t('WHITE_TIE')}</h6>
+        <img src="./white-tie.png" width="100" height="90"></img>
       </div>
+
       <Modal open={isOpenModal} onClose={() => { openModal(false); }}>
       <Box sx={modalStyles}>
       <div id="modal-modal-title">
